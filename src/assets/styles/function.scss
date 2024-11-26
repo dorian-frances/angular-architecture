@@ -1,0 +1,3 @@
+@function get-size($spacing-coefficient) {
+  @return $spacing-coefficient * 8px;
+}

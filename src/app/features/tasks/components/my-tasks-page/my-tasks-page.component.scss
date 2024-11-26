@@ -1,0 +1,47 @@
+@import "function";
+
+:host {
+  width: 100%;
+}
+
+.my-tasks-page {
+  height: 100%;
+  width: 100%;
+
+  padding: get-size(10);
+
+  display: flex;
+  flex-direction: column;
+  gap: get-size(3);
+
+  &__input {
+    border: 1px solid #665cef;
+    border-radius: get-size(1);
+    padding: get-size(1) get-size(2);
+
+    outline: 1px solid #FFFFFF;
+    transition: 0.3s;
+
+    &:focus {
+      outline: 1px solid #665cef;
+    }
+  }
+
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: get-size(2);
+
+    li {
+      padding: get-size(1) get-size(2);
+
+      border-radius: get-size(0.5);
+      border: 1px solid #F1F1F1;
+      background-color: #F9F9F9;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import "function";
+
+:host {
+  width: 30%;
+  min-width: get-size(25);
+  max-width: get-size(35);
+}
+
+nav {
+  height: 100vh;
+  padding-top: get-size(9);
+
+  border: 1px solid #F1F1F1;
+  background-color: #F9F9F9;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: get-size(1);
+
+      a {
+        padding: get-size(1) get-size(2);
+        display: flex;
+        align-items: center;
+        gap: get-size(1);
+
+        border-radius: get-size(1);
+        background-color: #F9F9F9;
+        transition: 0.3s;
+
+        cursor: pointer;
+
+        &:hover {
+          background-color: #EBEBEB;
+        }
+
+        span {
+          color: #665cef;
+          font-variation-settings:
+            'FILL' 1
+        }
+      }
+    }
+  }
+}

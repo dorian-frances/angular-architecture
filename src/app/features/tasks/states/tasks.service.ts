@@ -37,15 +37,11 @@ export class TasksService {
         )
       : this.tasks();
   });
-  completedTasks = computed(() =>
-    this.tasks().filter((task) => task.completed),
-  );
   error = computed(() => this.state().error);
   status = computed(() => this.state().status);
 
   //sources
   loadedTasks$ = this.tasksApiClient.getAllTasks();
-  filter$ = this.filterControl.valueChanges;
 
   constructor() {
     //reducers
@@ -62,11 +58,13 @@ export class TasksService {
         })),
     });
 
-    this.filter$.pipe(takeUntilDestroyed()).subscribe((filter) => {
-      this.state.update((state) => ({
-        ...state,
-        filter: filter === '' ? null : filter,
-      }));
-    });
+    this.filterControl.valueChanges
+      .pipe(takeUntilDestroyed())
+      .subscribe((filter) => {
+        this.state.update((state) => ({
+          ...state,
+          filter: filter === '' ? null : filter,
+        }));
+      });
   }
 }

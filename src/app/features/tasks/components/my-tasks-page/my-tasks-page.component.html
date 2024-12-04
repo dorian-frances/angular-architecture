@@ -2,8 +2,29 @@
   <h1 class="my-tasks-page__title">My Tasks</h1>
   <input class="my-tasks-page__input" placeholder="Search in you tasks..." type="text" [formControl]="tasksService.filterControl" />
   <ul class="my-tasks-page__list">
-    @for (task of tasksService.filteredTasks(); track task.id) {
-      <li> {{ task.title }} </li>
+    @for (task of tasksService.filteredUncompletedTasks(); track task.id) {
+      <li>
+        <input type="checkbox"
+               [id]="task.id"
+               [name]="task.id"
+               [checked]="task.completed"
+               (change)="tasksService.changeTaskStatus(task.id)">
+        <label [for]="task.id">{{ task.title }}</label>
+      </li>
+    }
+  </ul>
+
+  <h3 class="my-tasks-page__completed">My Completed Tasks</h3>
+  <ul class="my-tasks-page__list">
+    @for (task of tasksService.completedTasks(); track task.id) {
+      <li>
+        <input type="checkbox"
+               [id]="task.id"
+               [name]="task.id"
+               [checked]="task.completed"
+               (change)="tasksService.changeTaskStatus(task.id)">
+        <label [for]="task.id">{{ task.title }}</label>
+      </li>
     }
   </ul>
 </div>

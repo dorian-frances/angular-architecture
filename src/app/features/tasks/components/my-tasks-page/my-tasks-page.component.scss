@@ -39,9 +39,23 @@
     li {
       padding: get-size(1) get-size(2);
 
+      display: flex;
+      gap: get-size(2);
+      align-items: center;
+
       border-radius: get-size(0.5);
       border: 1px solid #F1F1F1;
       background-color: #F9F9F9;
+
+      input {
+        cursor: pointer;
+
+        border-radius: get-size(1);
+      }
+
+      label {
+        cursor: pointer;
+      }
     }
   }
 }

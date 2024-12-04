@@ -29,16 +29,20 @@ export class TasksService {
   //selectors
   tasks = computed(() => this.state().tasks);
   filter = computed(() => this.state().filter);
-  filteredTasks = computed(() => {
+  completedTasks = computed(() =>
+    this.state().tasks.filter((task) => task.completed),
+  );
+  uncompletedTasks = computed(() =>
+    this.state().tasks.filter((task) => !task.completed),
+  );
+  filteredUncompletedTasks = computed(() => {
     const filter = this.filter();
     return filter
-      ? this.tasks().filter((task) =>
+      ? this.uncompletedTasks().filter((task) =>
           task.title.toLowerCase().includes(filter.toLowerCase()),
         )
-      : this.tasks();
+      : this.uncompletedTasks();
   });
-  error = computed(() => this.state().error);
-  status = computed(() => this.state().status);
 
   //sources
   loadedTasks$ = this.tasksApiClient.getAllTasks();
@@ -66,5 +70,18 @@ export class TasksService {
           filter: filter === '' ? null : filter,
         }));
       });
+  }
+
+  changeTaskStatus(taskId: string) {
+    this.state.update((state) => {
+      const updatedTasks = state.tasks.map((task) => {
+        if (task.id === taskId) {
+          return { ...task, completed: !task.completed };
+        }
+
+        return task;
+      });
+      return { ...state, tasks: updatedTasks };
+    });
   }
 }

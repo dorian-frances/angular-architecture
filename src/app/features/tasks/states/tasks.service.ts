@@ -43,6 +43,8 @@ export class TasksService {
         )
       : this.uncompletedTasks();
   });
+  status = computed(() => this.state().status);
+  error = computed(() => this.state().error);
 
   //sources
   loadedTasks$ = this.tasksApiClient.getAllTasks();
